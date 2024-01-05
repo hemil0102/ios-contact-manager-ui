@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0NE-IB-F4K">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="99" width="393" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="r10-RW-tFl" detailTextLabel="ESs-l4-SzL" style="IBUITableViewCellStyleSubtitle" id="7EK-JI-2ie">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="r10-RW-tFl" detailTextLabel="ESs-l4-SzL" style="IBUITableViewCellStyleSubtitle" id="7EK-JI-2ie">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7EK-JI-2ie" id="cer-zy-Krc">
@@ -46,18 +46,62 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7D-Lz-uH7">
+                                <rect key="frame" x="0.0" y="59" width="393" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KjW-x7-CnB" userLabel="+">
+                                        <rect key="frame" x="332" y="3" width="53" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="add"/>
+                                        <connections>
+                                            <action selector="addItem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9HE-9Z-JNk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfA-Ij-URe" userLabel="Edit Done Button">
+                                        <rect key="frame" x="252.33333333333334" y="3" width="71.666666666666657" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="delete"/>
+                                        <connections>
+                                            <action selector="deleteTableCell:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ex4-HQ-9KZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-bE-ki9">
+                                        <rect key="frame" x="191" y="3" width="53" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="edit"/>
+                                        <connections>
+                                            <action selector="editTableCell:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mhk-f9-qmI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KjW-x7-CnB" secondAttribute="trailing" constant="8" id="HCe-6L-rDK"/>
+                                    <constraint firstAttribute="bottom" secondItem="KjW-x7-CnB" secondAttribute="bottom" constant="2" id="SCd-mO-Qd1"/>
+                                    <constraint firstAttribute="bottom" secondItem="YfA-Ij-URe" secondAttribute="bottom" constant="2" id="YjL-Bf-b6M"/>
+                                    <constraint firstAttribute="height" constant="40" id="ejI-ac-cuM"/>
+                                    <constraint firstItem="YfA-Ij-URe" firstAttribute="top" secondItem="q7D-Lz-uH7" secondAttribute="top" constant="3" id="j0O-do-m5u"/>
+                                    <constraint firstItem="KjW-x7-CnB" firstAttribute="top" secondItem="q7D-Lz-uH7" secondAttribute="top" constant="3" id="puu-F7-EZa"/>
+                                    <constraint firstItem="KjW-x7-CnB" firstAttribute="leading" secondItem="YfA-Ij-URe" secondAttribute="trailing" constant="8" id="x6I-W8-cZu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0NE-IB-F4K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AM9-wB-Zzb"/>
+                            <constraint firstItem="q7D-Lz-uH7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="R4Y-Sx-l3d"/>
                             <constraint firstItem="0NE-IB-F4K" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VA3-tJ-0PX"/>
-                            <constraint firstItem="0NE-IB-F4K" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Xpg-kE-w1O"/>
+                            <constraint firstItem="q7D-Lz-uH7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="W0N-Bw-nQL"/>
                             <constraint firstItem="0NE-IB-F4K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YXK-te-AVX"/>
+                            <constraint firstItem="q7D-Lz-uH7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="b8x-Ej-1JG"/>
+                            <constraint firstItem="0NE-IB-F4K" firstAttribute="top" secondItem="q7D-Lz-uH7" secondAttribute="bottom" id="sEZ-Ct-VeV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contactTableView" destination="0NE-IB-F4K" id="4H5-lh-zew"/>
+                        <outlet property="editDoneButton" destination="YfA-Ij-URe" id="X2U-ZN-c6C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -68,6 +112,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

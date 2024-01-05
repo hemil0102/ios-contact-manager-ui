@@ -43,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				709F65D52B45549F00EC7105 /* Main.storyboard */,
-				709F65D82B4554A100EC7105 /* Assets.xcassets */,
 				709F65DA2B4554A100EC7105 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -82,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				709F65DD2B4554A100EC7105 /* Info.plist */,
+				709F65D82B4554A100EC7105 /* Assets.xcassets */,
 			);
 			path = "ios-contact-manager-ui";
 			sourceTree = "<group>";
