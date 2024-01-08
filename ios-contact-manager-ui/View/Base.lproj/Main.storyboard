@@ -54,7 +54,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="add"/>
                                         <connections>
-                                            <action selector="addItem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9HE-9Z-JNk"/>
+                                            <action selector="addTableViewCellButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9HE-9Z-JNk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfA-Ij-URe" userLabel="Edit Done Button">
@@ -62,7 +62,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="delete"/>
                                         <connections>
-                                            <action selector="deleteTableCell:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ex4-HQ-9KZ"/>
+                                            <action selector="tableViewEditModeForDeleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Syw-OQ-To6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-bE-ki9">
@@ -71,7 +71,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="edit"/>
                                         <connections>
-                                            <action selector="editTableCell:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mhk-f9-qmI"/>
+                                            <action selector="editTableViewCellButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mhk-f9-qmI"/>
                                         </connections>
                                     </button>
                                 </subviews>
