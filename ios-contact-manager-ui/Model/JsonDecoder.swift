@@ -17,7 +17,6 @@ struct JsonDecoder<Element: Codable> {
         } catch {
             print("Error")
         }
-        
         guard let data = content.data(using: .utf8) else { throw JsonParsingError.decodeError }
         guard let jsonData = try? JSONDecoder().decode(Element.self, from: data) else { throw JsonParsingError.decodeError }
         
