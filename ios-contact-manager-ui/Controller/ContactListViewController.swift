@@ -68,9 +68,11 @@ final class ContactListViewController: UIViewController {
     
     private func scrollToBottom() {
         let lastRowOfIndexPath = numberOfLastRow - 1
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: lastRowOfIndexPath, section: 0)
-            self.contactTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        if lastRowOfIndexPath >= 0 {
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: lastRowOfIndexPath, section: 0)
+                self.contactTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         }
     }
     
