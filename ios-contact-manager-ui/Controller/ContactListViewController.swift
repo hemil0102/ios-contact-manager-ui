@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol ContactListViewControllerDelegate: AnyObject {
+    func showContactDetail()
+}
+
 final class ContactListViewController: UIViewController {
     
     //MARK: - Properties
-    private var contactList: [Contact] = []
+    var contactList: [Contact] = []
     private var mockData: [Contact] = [ Contact(name: "목업", age: 99, phoneNumber: "010-9999-9999") ]
     private var numberOfLastRow: Int {
         contactTableView.numberOfRows(inSection: 0)
@@ -22,11 +26,14 @@ final class ContactListViewController: UIViewController {
     @IBOutlet private weak var deleteButton: UIButton!
     @IBOutlet private weak var editButton: UIButton!
     
+    @IBOutlet private weak var addContact:UIBarButtonItem!
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         configureTableView()
+        setNavigationItem()
     }
     
     //MARK: - @IBAction
@@ -55,6 +62,15 @@ final class ContactListViewController: UIViewController {
         }
     }
     
+    //화면전환 ⭐️
+    @IBAction func addContactButtonTapped(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let listDetailVC = storyboard.instantiateViewController(withIdentifier: "listDetailVC") as? ListDetailViewController {
+            let navigationController = UINavigationController(rootViewController: listDetailVC)
+            navigationController.modalPresentationStyle = .popover
+            self.present(navigationController, animated: true)
+        }
+    }
     //MARK: - Custom Methods
     private func configureTableView() {
         self.contactTableView.delegate = self
@@ -76,7 +92,7 @@ final class ContactListViewController: UIViewController {
         }
         
         guard let lastRow = lastRowOfIndexPath else { return }
-
+        
         if lastRow != NSNotFound {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: lastRow, section: 0)
@@ -103,6 +119,17 @@ final class ContactListViewController: UIViewController {
         contactList[selectedCellIndex] = mockData[0]
         contactTableView.reloadRows(at: [IndexPath(row: selectedCellIndex, section: 0)], with: .fade)
         scrollToBottom()
+    }
+    //네비게이션아이템 세팅 ⭐️
+    func setNavigationItem() {
+        navigationItem.title = "연락처"
+    }
+}
+
+//델리게이터 세팅? ⭐️
+extension ContactListViewController: ContactListViewControllerDelegate {
+    func showContactDetail() {
+        loadData()
     }
 }
 
