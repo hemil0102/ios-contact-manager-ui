@@ -118,7 +118,7 @@
         <!--Add Contact View Controller-->
         <scene sceneID="YDA-ui-Cyr">
             <objects>
-                <viewController id="kpc-Hk-lad" customClass="AddContactViewController" customModule="ios_contact_manager_ui" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="modal" id="kpc-Hk-lad" customClass="AddContactViewController" customModule="ios_contact_manager_ui" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Npk-nl-lDs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,7 +221,7 @@
         <!--Navigation Controller-->
         <scene sceneID="6Ky-F8-aBy">
             <objects>
-                <navigationController storyboardIdentifier="modal" automaticallyAdjustsScrollViewInsets="NO" id="yyU-VL-hyS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yyU-VL-hyS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VaL-wz-tZx">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>

@@ -9,8 +9,10 @@ import UIKit
 
 final class ContactListViewController: UIViewController {
     
+    var delegate:AddContactViewControllerDelegate?
+    
     //MARK: - Properties
-    private var contactList: [Contact] = []
+    var contactList: [Contact] = []
     private var mockData: [Contact] = [ Contact(name: "목업", age: "99", phoneNumber: "010-9999-9999") ]
     private var numberOfLastRow: Int {
         contactTableView.numberOfRows(inSection: 0)
@@ -28,6 +30,7 @@ final class ContactListViewController: UIViewController {
         loadData()
         configureTableView()
         configureNavigationItem()
+        
     }
     
     //MARK: - @IBAction
@@ -63,9 +66,15 @@ final class ContactListViewController: UIViewController {
     }
     
     @objc func addContactButtonTapped(_ sender: UIButton) {
-        guard let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "modal") else { return }
-        nextViewController.modalPresentationStyle = .automatic
-        self.present(nextViewController, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let nextViewController = storyboard.instantiateViewController(withIdentifier: "modal") as? AddContactViewController else { return }
+        
+        nextViewController.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: nextViewController)
+        
+        navigationController.modalPresentationStyle = .popover
+        self.present(navigationController, animated: true)
     }
     
     private func configureTableView() {
@@ -88,7 +97,7 @@ final class ContactListViewController: UIViewController {
         }
         
         guard let lastRow = lastRowOfIndexPath else { return }
-
+        
         if lastRow != NSNotFound {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: lastRow, section: 0)
@@ -145,4 +154,13 @@ extension ContactListViewController: UITableViewDelegate {
         return .delete
     }
 }
+
+extension ContactListViewController:AddContactViewControllerDelegate {
+    
+    func updateContactList(with contact: Contact) {
+        contactList.append(contact)
+        self.contactTableView.insertRows(at: [IndexPath(row: numberOfLastRow, section: 0)], with: .automatic)
+    }
+}
+
 
