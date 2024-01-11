@@ -22,12 +22,11 @@ class AddContactViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     
     override func viewDidLoad() {
-        nameTextField.delegate = self
-        ageTextField.delegate = self
-        phoneNumberTextField.delegate = self
+        
         super.viewDidLoad()
         configureNavigationItem()
         configureTextField()
+        textfieldDelegate()
     }
     
     func configureNavigationItem() {
@@ -39,11 +38,23 @@ class AddContactViewController: UIViewController {
         navigationItem.title = "새 연락처"
     }
     
+    func textfieldDelegate() {
+        nameTextField.delegate = self
+        ageTextField.delegate = self
+        phoneNumberTextField.delegate = self
+    }
+    
     //키보드 설정 ⭐️
     func configureTextField() {
+        let numberPadToolBar = UIToolbar()
+        numberPadToolBar.sizeToFit()
+        let plusButton = UIBarButtonItem(title: "+ * -", style: .plain, target: self, action: nil)
+        numberPadToolBar.items = [plusButton]
         nameTextField.keyboardType = .emailAddress
         ageTextField.keyboardType = .numberPad
-        phoneNumberTextField.keyboardType = .emailAddress
+        phoneNumberTextField.keyboardType = .numberPad
+        phoneNumberTextField.inputAccessoryView = numberPadToolBar
+        phoneNumberTextField.placeholder = "(-)을 포함해서 입력해주세요."
     }
     
     @objc func cancelButtonTapped() {
@@ -54,30 +65,74 @@ class AddContactViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    
+    // MARK: - savtButton
     @objc func saveButtonTapped() {
-        guard let name = nameTextField.text,
-              let age = ageTextField.text,
-              let phoneNumber = phoneNumberTextField.text else { return }
+        //        guard let name = nameTextField.text,
+        //              let age = ageTextField.text,
+        //              let phoneNumber = phoneNumberTextField.text else  { return }
+        guard let name = nameTextField.text, !name.isEmpty else { return presentNameAler() }
+        guard let age = ageTextField.text, !age.isEmpty else { return presentageAlert() }
+        guard let phoneNumber = phoneNumberTextField.text, !phoneNumber.isEmpty else { return presentphoneNumberAlert()}
+        
+        
+        
+        if !checkAgeTextFeild(age: age) {
+            return presentageAlert()
+        }
+        
         let newContact = Contact(name: name, age: age, phoneNumber: phoneNumber)
+        
+        
         delegate?.updateContactList(with: newContact)
         
-        //델리게이트 ⭐️
         self.dismiss(animated: true)
+    }
+    
+    //나이유효성 검사
+    func checkAgeTextFeild(age: String) -> Bool {
+        if let ageNumber = Int(age) {
+            return ageNumber > 0 && ageNumber <= 999
+        }
+        return false
+    }
+    
+    
+    
+    //⭐️alert정의, protocol 기본정의 해보기?
+    func presentNameAler() {
+        presentAlert(title: "입력한 이름 정보가 잘못되었습니다.", message: "", confirmTitle: "확인")
+    }
+    func presentageAlert() {
+        presentAlert(title: "입력한 나이 정보가 잘못되었습니다.", message: "", confirmTitle: "확인")
+    }
+    func presentphoneNumberAlert() {
+        presentAlert(title: "입력한 연락처 정보가 잘못되었습니다.", message: "", confirmTitle: "확인")
     }
 }
 
 extension AddContactViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        //숫자 입력이면 false
-        if Int(string) != nil {
-            return false
-        } else {
-            guard let text = nameTextField.text else {return true}
-            let newLength = text.count - range.length
-            return newLength <= 10
-        }
+    func removeAllSpace(textFieldText: String) -> String {
+        let text = textFieldText.components(separatedBy: .whitespaces)
+        let resultText = text.joined()
+        return resultText
     }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let nameText = nameTextField.text,
+              let ageText = ageTextField.text,
+              let phoneNumberText = phoneNumberTextField.text else { return }
+        nameTextField.text = removeAllSpace(textFieldText: nameText)
+        ageTextField.text = removeAllSpace(textFieldText: ageText)
+        phoneNumberTextField.text = removeAllSpace(textFieldText: phoneNumberText)
+        
+        print(#function)
+    }
+    
 }
+
+
+
 
 

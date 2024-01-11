@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		706EB71A2B4FA85300044E61 /* textFieldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706EB7192B4FA85300044E61 /* textFieldManager.swift */; };
 		709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65CF2B45549F00EC7105 /* AppDelegate.swift */; };
 		709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65D12B45549F00EC7105 /* SceneDelegate.swift */; };
 		709F65D42B45549F00EC7105 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65D32B45549F00EC7105 /* ContactListViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		706EB7192B4FA85300044E61 /* textFieldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldManager.swift; sourceTree = "<group>"; };
 		709F65CC2B45549F00EC7105 /* ios-contact-manager-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-contact-manager-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		709F65CF2B45549F00EC7105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		709F65D12B45549F00EC7105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,8 +64,9 @@
 		7002F04E2B46A07100188320 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C71032E62B4E88110072DA53 /* AddContactViewController.swift */,
 				709F65D32B45549F00EC7105 /* ContactListViewController.swift */,
+				C71032E62B4E88110072DA53 /* AddContactViewController.swift */,
+				706EB7192B4FA85300044E61 /* textFieldManager.swift */,
 				C7F8C5F02B47EEF7001FCF05 /* mockJson.json */,
 				709F65CF2B45549F00EC7105 /* AppDelegate.swift */,
 				709F65D12B45549F00EC7105 /* SceneDelegate.swift */,
@@ -203,6 +206,7 @@
 				70D0B73B2B4B98AE00998F25 /* UIViewController + Extension.swift in Sources */,
 				C779964E2B4D24FC00196BE3 /* JsonDecoder.swift in Sources */,
 				709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */,
+				706EB71A2B4FA85300044E61 /* textFieldManager.swift in Sources */,
 				709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */,
 				C7A34A962B46A27200314592 /* Contact.swift in Sources */,
 			);
