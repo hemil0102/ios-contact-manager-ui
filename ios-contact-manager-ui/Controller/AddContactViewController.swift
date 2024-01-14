@@ -15,7 +15,7 @@ class AddContactViewController: UIViewController {
     
     var addedContactList: [Contact] = []
     weak var delegate: SendDataDelegate?
-
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -25,6 +25,7 @@ class AddContactViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationItem()
         configureTextField()
+        
     }
     
     func configureTextField() {
@@ -34,7 +35,6 @@ class AddContactViewController: UIViewController {
     }
     
     func removeEmptySpaceCharacter(_ textField: UITextField) -> String? {
-
         return textField.text?.filter { !$0.isWhitespace }
     }
     
@@ -46,7 +46,7 @@ class AddContactViewController: UIViewController {
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.title = "새 연락처"
     }
-
+    
     @objc func cancelButtonTapped() {
         presentAlertWithCancel(title: "정말로 취소하시겠습니까?", message: "", confirmTitle: "예", cancelTitle: "아니오") { [weak self] _ in self?.dismissModal() }
     }
@@ -55,23 +55,27 @@ class AddContactViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    
+    // MARK: - saveButton
     @objc func saveButtonTapped() {
         guard let name = removeEmptySpaceCharacter(nameTextField), !name.isEmpty else { return presentNameAlert() }
         guard let age = removeEmptySpaceCharacter(ageTextField), !age.isEmpty else { return presentAgeAlert() }
-        guard let phoneNumber = removeEmptySpaceCharacter(phoneNumberTextField), !phoneNumber.isEmpty else { return presentPhoneNumberAlert() }
-            
-        if !checkAgeTextField(age: age) {
-            return presentAgeAlert()
-        }
+        guard var phoneNumber = phoneNumberTextField.text else { return }
         
-        if !checkPhoneNumberTextField(for: phoneNumber) {
-            return presentPhoneNumberAlert()
-        }
+        checkAgeTextField(age: age)
+        
+        phoneNumber = formatPhoneNumber(phoneNumber)
+        guard !phoneNumber.isEmpty else { return presentPhoneNumberAlert() }
+        phoneNumberTextField.text = phoneNumber
         
         let newContact = Contact(name: name, age: age, phoneNumber: phoneNumber)
         delegate?.updateContactList(with: newContact)
         self.dismiss(animated: true)
+        
+        
+        
     }
+    
     
     func checkDigitsOver(number: Int, for phoneNumber: String) -> Bool {
         if phoneNumber.count < number {
@@ -81,44 +85,37 @@ class AddContactViewController: UIViewController {
         }
     }
     
-    func checkPhoneNumberTextField(for phoneNumber: String) -> Bool {
-        let onlyNumber = phoneNumber.replacingOccurrences(of: "-", with: "")
-        let isNumberOkay = checkDigitsOver(number: 9, for: onlyNumber)
-        let regexPattern = "^[0-9]+-[0-9]+-[0-9]+$"
-        
-        if isNumberOkay {
-            do {
-                let regex = try NSRegularExpression(pattern: regexPattern)
-                if let _ = regex.firstMatch(in: phoneNumber, options: [], range: NSRange(location: 0, length: phoneNumber.count)) {
-                    return true
-                }
-            } catch {
-                print("에러: 전화번호 정상 아님")
+    
+    func formatPhoneNumber(_ number: String) -> String {
+        do {
+            let regex = try NSRegularExpression(pattern: "^(0[0-9]{1,2}-?[0-9]{3,4}-?[0-9]{4})$", options: [])
+            let matches = regex.matches(in: number, options: [], range: NSRange(location: 0, length: number.utf16.count))
+            if let match = matches.first {
+                return (number as NSString).substring(with: match.range)
             }
-        } else {
-            print("에러: 자리수가 9개 미만입니다.")
+        } catch {
+            print("정규식 에러: \(error.localizedDescription)")
         }
-        return false
+        return number
     }
     
-    func checkAgeTextField(age: String) -> Bool {
-        if let ageNumber = Int(age) {
-            return ageNumber > 0 && ageNumber <= 999
-        }
-        
-        return false
+    func checkAgeTextField(age: String) {
+        guard let ageNumber = Int(age), 0 < ageNumber, ageNumber <= 999 else { return presentAgeAlert() }
     }
     
     //MARK: - Alert 구현
     func presentNameAlert() {
-        presentAlert(title: "입력한 이름 정보가 잘못되었습니다.", message: "", confirmTitle: "확인")
+        presentAlert(title: "\(ErrorEnum.nameTextFeildError.ErrorMessage)", message: "", confirmTitle: "확인")
     }
     
     func presentAgeAlert() {
-        presentAlert(title: "입력한 나이 정보가 잘못되었습니다.", message: "", confirmTitle: "확인")
+        presentAlert(title: "\(ErrorEnum.ageTextFeildError.ErrorMessage)", message: "", confirmTitle: "확인")
     }
     
     func presentPhoneNumberAlert() {
-        presentAlert(title: "입력한 연락처 정보가 잘못되었습니다.", message: "", confirmTitle: "확인")
+        presentAlert(title: "\(ErrorEnum.phoneNumberFeildError.ErrorMessage)", message: "", confirmTitle: "확인")
     }
 }
+
+
+

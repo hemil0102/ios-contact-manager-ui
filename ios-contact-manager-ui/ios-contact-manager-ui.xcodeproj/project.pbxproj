@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701C8B792B53EF6100472573 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C8B782B53EF6100472573 /* ContactManager.swift */; };
+		701C8B7B2B540F0E00472573 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C8B7A2B540F0E00472573 /* ErrorEnum.swift */; };
 		709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65CF2B45549F00EC7105 /* AppDelegate.swift */; };
 		709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65D12B45549F00EC7105 /* SceneDelegate.swift */; };
 		709F65D42B45549F00EC7105 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65D32B45549F00EC7105 /* ContactListViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		701C8B782B53EF6100472573 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
+		701C8B7A2B540F0E00472573 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 		709F65CC2B45549F00EC7105 /* ios-contact-manager-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-contact-manager-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		709F65CF2B45549F00EC7105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		709F65D12B45549F00EC7105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +39,7 @@
 		C779964D2B4D24FC00196BE3 /* JsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecoder.swift; sourceTree = "<group>"; };
 		C77996502B4D25EB00196BE3 /* JsonParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParsingError.swift; sourceTree = "<group>"; };
 		C7A34A952B46A27200314592 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		C7F8C5F02B47EEF7001FCF05 /* mockJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockJson.json; sourceTree = "<group>"; };
+		C7F8C5F02B47EEF7001FCF05 /* mockJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = mockJson.json; path = ../Controller/mockJson.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,7 @@
 		7002F04D2B46A06D00188320 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7F8C5F02B47EEF7001FCF05 /* mockJson.json */,
 				709F65D52B45549F00EC7105 /* Main.storyboard */,
 				709F65D82B4554A100EC7105 /* Assets.xcassets */,
 				709F65DA2B4554A100EC7105 /* LaunchScreen.storyboard */,
@@ -62,9 +67,8 @@
 		7002F04E2B46A07100188320 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C71032E62B4E88110072DA53 /* AddContactViewController.swift */,
 				709F65D32B45549F00EC7105 /* ContactListViewController.swift */,
-				C7F8C5F02B47EEF7001FCF05 /* mockJson.json */,
+				C71032E62B4E88110072DA53 /* AddContactViewController.swift */,
 				709F65CF2B45549F00EC7105 /* AppDelegate.swift */,
 				709F65D12B45549F00EC7105 /* SceneDelegate.swift */,
 			);
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				C77996502B4D25EB00196BE3 /* JsonParsingError.swift */,
+				701C8B7A2B540F0E00472573 /* ErrorEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				C7A34A952B46A27200314592 /* Contact.swift */,
+				701C8B782B53EF6100472573 /* ContactManager.swift */,
 				C779964D2B4D24FC00196BE3 /* JsonDecoder.swift */,
 			);
 			path = Model;
@@ -202,8 +208,10 @@
 				709F65D42B45549F00EC7105 /* ContactListViewController.swift in Sources */,
 				70D0B73B2B4B98AE00998F25 /* UIViewController + Extension.swift in Sources */,
 				C779964E2B4D24FC00196BE3 /* JsonDecoder.swift in Sources */,
+				701C8B7B2B540F0E00472573 /* ErrorEnum.swift in Sources */,
 				709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */,
 				709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */,
+				701C8B792B53EF6100472573 /* ContactManager.swift in Sources */,
 				C7A34A962B46A27200314592 /* Contact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

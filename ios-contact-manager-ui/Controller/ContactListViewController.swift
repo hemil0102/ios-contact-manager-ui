@@ -29,23 +29,7 @@ final class ContactListViewController: UIViewController {
         configureTableView()
         configureNavigationItem()
     }
-    
-    //MARK: - @IBAction
-    @IBAction private func addButtonTapped(_ sender: UIButton) {
-        addData(with: mockData[0])
-        scrollToBottom()
-    }
-    
-    @IBAction private func deleteButtonTapped(_ sender: UIButton) {
-        if self.contactTableView.isEditing {
-            self.deleteButton.setTitle("Delete", for: .normal)
-            self.contactTableView.setEditing(false, animated: true)
-        } else {
-            self.deleteButton.setTitle("Done", for: .normal)
-            self.contactTableView.setEditing(true, animated: true)
-        }
-    }
-    
+    // MARK: - @IBAction
     @IBAction private func editButtonTapped(_ sender: UIButton) {
         presentAlertWithTextfieldAndCancel(title: "입력한 번호의 셀을 목업으로 수정합니다.",
                                            message: "확인을 누르면 수정됩니다.",
@@ -57,6 +41,10 @@ final class ContactListViewController: UIViewController {
     }
     
     //MARK: - Custom Methods
+    private func configureTableView() {
+        self.contactTableView.delegate = self
+        self.contactTableView.dataSource = self
+    }
     
     private func configureNavigationItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addContactButtonTapped(_:)))
@@ -70,35 +58,9 @@ final class ContactListViewController: UIViewController {
         self.present(navigationViewController, animated: true)
     }
     
-    private func configureTableView() {
-        self.contactTableView.delegate = self
-        self.contactTableView.dataSource = self
-    }
-    
     private func addData(with data: Contact) {
         contactList.append(data)
         self.contactTableView.insertRows(at: [IndexPath(row: numberOfLastRow, section: 0)], with: .automatic)
-    }
-    
-    private func scrollToBottom() {
-        let lastRowOfIndexPath: Int?
-        
-        if numberOfLastRow <= 0 {
-            lastRowOfIndexPath = NSNotFound
-        } else {
-            lastRowOfIndexPath = numberOfLastRow - 1
-        }
-        
-        guard let lastRow = lastRowOfIndexPath else { return }
-
-        if lastRow != NSNotFound {
-            DispatchQueue.main.async {
-                let indexPath = IndexPath(row: lastRow, section: 0)
-                self.contactTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            }
-        } else {
-            print("indexPath가 유효하지 않습니다.")
-        }
     }
     
     private func loadData() {
@@ -116,12 +78,12 @@ final class ContactListViewController: UIViewController {
         selectedCellIndex = selectedCellNumber - 1
         contactList[selectedCellIndex] = mockData[0]
         contactTableView.reloadRows(at: [IndexPath(row: selectedCellIndex, section: 0)], with: .fade)
-        scrollToBottom()
     }
 }
 
+//MARK: - ContactListViewController Extension
+
 extension ContactListViewController: SendDataDelegate {
-    
     func updateContactList(with contact: Contact) {
         addData(with: contact)
     }
