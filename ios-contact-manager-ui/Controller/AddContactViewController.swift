@@ -38,7 +38,7 @@ class AddContactViewController: UIViewController {
     func configureTextField() {
         nameTextField.keyboardType = .emailAddress
         ageTextField.keyboardType = .numberPad
-        phoneNumberTextField.keyboardType = .numbersAndPunctuation
+        phoneNumberTextField.keyboardType = .phonePad
     }
     
     func removeEmptySpaceCharacter(_ textField: UITextField) -> String? {
