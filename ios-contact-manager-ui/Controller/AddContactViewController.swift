@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol SendDataDelegate: AnyObject {
     func updateContactList(with contact: Contact)
 }
@@ -25,7 +26,13 @@ class AddContactViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationItem()
         configureTextField()
-        
+        textfieldDelegate()
+    }
+    
+    func textfieldDelegate() {
+        nameTextField.delegate = self
+        ageTextField.delegate = self
+        phoneNumberTextField.delegate = self
     }
     
     func configureTextField() {
@@ -59,14 +66,8 @@ class AddContactViewController: UIViewController {
     @objc func saveButtonTapped() {
         guard let name = removeEmptySpaceCharacter(nameTextField), !name.isEmpty else { return presentNameAlert() }
         guard let age = removeEmptySpaceCharacter(ageTextField), !age.isEmpty else { return presentAgeAlert() }
-        guard var phoneNumber = phoneNumberTextField.text else { return }
-        
+        guard let phoneNumber = phoneNumberTextField.text else { return }
         checkAgeTextField(age: age)
-        
-        phoneNumber = formatPhoneNumber(phoneNumber)
-        guard !phoneNumber.isEmpty else { return presentPhoneNumberAlert() }
-        phoneNumberTextField.text = phoneNumber
-        
         let newContact = Contact(name: name, age: age, phoneNumber: phoneNumber)
         delegate?.updateContactList(with: newContact)
         self.dismiss(animated: true)
@@ -80,21 +81,6 @@ class AddContactViewController: UIViewController {
             return true
         }
     }
-    
-    
-    func formatPhoneNumber(_ number: String) -> String {
-        do {
-            let regex = try NSRegularExpression(pattern: "^(0[0-9]{1,2}-?[0-9]{3,4}-?[0-9]{4})$", options: [])
-            let matches = regex.matches(in: number, options: [], range: NSRange(location: 0, length: number.utf16.count))
-            if let match = matches.first {
-                return (number as NSString).substring(with: match.range)
-            }
-        } catch {
-            print("정규식 에러: \(error.localizedDescription)")
-        }
-        return number
-    }
-    
     func checkAgeTextField(age: String) {
         guard let ageNumber = Int(age), 0 < ageNumber, ageNumber <= 999 else { return presentAgeAlert() }
     }
@@ -113,8 +99,17 @@ class AddContactViewController: UIViewController {
     }
 }
 
-
-extension AddContactViewController:UITextFieldDelegate {
+extension AddContactViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == phoneNumberTextField {
+            guard let currentText = textField.text //1
+                    as NSString? else { return false }
+            let newString = currentText.replacingCharacters(in: range, with: string)
+            let formattedPhoneNumber = newString.formatPhoneNumber()
+            textField.text = formattedPhoneNumber
+            return false
+        }
+        return true
+    }
 }
-
-
