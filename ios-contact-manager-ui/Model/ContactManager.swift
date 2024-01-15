@@ -12,7 +12,8 @@ import Foundation
 
 final class ContactManager {
     
-    lazy var contactList: [Contact] = []
+    private var contactList: [Contact] = []
+    
     
      func addContact(contact: Contact) {
         contactList.append(contact)
@@ -23,7 +24,7 @@ final class ContactManager {
     }
     
      func showDetailContactList(index: IndexPath) {
-        //연락처 세부사항 가기 로직 넣을 예정
+         
     }
 }
 

@@ -55,7 +55,6 @@ class AddContactViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    
     // MARK: - saveButton
     @objc func saveButtonTapped() {
         guard let name = removeEmptySpaceCharacter(nameTextField), !name.isEmpty else { return presentNameAlert() }
@@ -71,9 +70,6 @@ class AddContactViewController: UIViewController {
         let newContact = Contact(name: name, age: age, phoneNumber: phoneNumber)
         delegate?.updateContactList(with: newContact)
         self.dismiss(animated: true)
-        
-        
-        
     }
     
     
@@ -105,17 +101,20 @@ class AddContactViewController: UIViewController {
     
     //MARK: - Alert 구현
     func presentNameAlert() {
-        presentAlert(title: "\(ErrorEnum.nameTextFeildError.ErrorMessage)", message: "", confirmTitle: "확인")
+        presentAlert(title: "\(TextFieldError.nameTextFieldError.ErrorMessage)", message: "", confirmTitle: "확인")
     }
     
     func presentAgeAlert() {
-        presentAlert(title: "\(ErrorEnum.ageTextFeildError.ErrorMessage)", message: "", confirmTitle: "확인")
+        presentAlert(title: "\(TextFieldError.ageTextFieldError.ErrorMessage)", message: "", confirmTitle: "확인")
     }
     
     func presentPhoneNumberAlert() {
-        presentAlert(title: "\(ErrorEnum.phoneNumberFeildError.ErrorMessage)", message: "", confirmTitle: "확인")
+        presentAlert(title: "\(TextFieldError.phoneNumberFieldError.ErrorMessage)", message: "", confirmTitle: "확인")
     }
 }
 
+
+extension AddContactViewController:UITextFieldDelegate {
+}
 
 

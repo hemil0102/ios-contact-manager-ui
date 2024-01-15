@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		701C8B792B53EF6100472573 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C8B782B53EF6100472573 /* ContactManager.swift */; };
-		701C8B7B2B540F0E00472573 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C8B7A2B540F0E00472573 /* ErrorEnum.swift */; };
+		701C8B7B2B540F0E00472573 /* TextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C8B7A2B540F0E00472573 /* TextFieldError.swift */; };
 		709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65CF2B45549F00EC7105 /* AppDelegate.swift */; };
 		709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65D12B45549F00EC7105 /* SceneDelegate.swift */; };
 		709F65D42B45549F00EC7105 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709F65D32B45549F00EC7105 /* ContactListViewController.swift */; };
@@ -25,7 +25,7 @@
 
 /* Begin PBXFileReference section */
 		701C8B782B53EF6100472573 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
-		701C8B7A2B540F0E00472573 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
+		701C8B7A2B540F0E00472573 /* TextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldError.swift; sourceTree = "<group>"; };
 		709F65CC2B45549F00EC7105 /* ios-contact-manager-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-contact-manager-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		709F65CF2B45549F00EC7105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		709F65D12B45549F00EC7105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				C77996502B4D25EB00196BE3 /* JsonParsingError.swift */,
-				701C8B7A2B540F0E00472573 /* ErrorEnum.swift */,
+				701C8B7A2B540F0E00472573 /* TextFieldError.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 				709F65D42B45549F00EC7105 /* ContactListViewController.swift in Sources */,
 				70D0B73B2B4B98AE00998F25 /* UIViewController + Extension.swift in Sources */,
 				C779964E2B4D24FC00196BE3 /* JsonDecoder.swift in Sources */,
-				701C8B7B2B540F0E00472573 /* ErrorEnum.swift in Sources */,
+				701C8B7B2B540F0E00472573 /* TextFieldError.swift in Sources */,
 				709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */,
 				709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */,
 				701C8B792B53EF6100472573 /* ContactManager.swift in Sources */,

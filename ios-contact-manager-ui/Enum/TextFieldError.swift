@@ -7,18 +7,18 @@
 
 import Foundation
 
-enum ErrorEnum: Error {
-    case ageTextFeildError
-    case nameTextFeildError
-    case phoneNumberFeildError
+enum TextFieldError: Error {
+    case ageTextFieldError
+    case nameTextFieldError
+    case phoneNumberFieldError
     
     var ErrorMessage: String {
         switch self {
-        case .ageTextFeildError:
-            "입력한 이름 정보가 잘못되었습니다."
-        case .nameTextFeildError:
+        case .ageTextFieldError:
             "입력한 나이 정보가 잘못되었습니다."
-        case .phoneNumberFeildError:
+        case .nameTextFieldError:
+            "입력한 이름 정보가 잘못되었습니다."
+        case .phoneNumberFieldError:
             "입력한 연락처 정보가 잘못되었습니다."
         }
     }
