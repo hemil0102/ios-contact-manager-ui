@@ -11,6 +11,11 @@ final class ContactListViewController: UIViewController {
     
     //MARK: - Properties
     private var contactList: [Contact] = []
+    var filteredContacts: [Contact] = []
+    var searchController = UISearchController(searchResultsController: nil)
+    var isSearchActive: Bool {
+        return searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
+    }
     private var numberOfLastRow: Int {
         contactTableView.numberOfRows(inSection: 0)
     }
@@ -24,11 +29,20 @@ final class ContactListViewController: UIViewController {
         loadData()
         configureTableView()
         configureNavigationItem()
+        configureSearchBar()
     }
     
     //MARK: - Custom Methods
     private func configureNavigationItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addContactButtonTapped(_:)))
+    }
+    
+    func configureSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.placeholder = "연락처 검색"
+        navigationItem.searchController = searchController
     }
     
     @objc private func addContactButtonTapped(_ sender: UIButton) {
@@ -62,7 +76,7 @@ final class ContactListViewController: UIViewController {
         }
         
         guard let lastRow = lastRowOfIndexPath else { return }
-
+        
         if lastRow != NSNotFound {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: lastRow, section: 0)
@@ -96,6 +110,7 @@ final class ContactListViewController: UIViewController {
     }
 }
 
+
 extension ContactListViewController: AddContactDelegate {
     
     func updateContactList(with contact: Contact) {
@@ -103,18 +118,20 @@ extension ContactListViewController: AddContactDelegate {
     }
 }
 
+
 //MARK: - UITableViewDataSource Extension
 extension ContactListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactList.count
+        return isSearchActive ? filteredContacts.count : contactList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = contactTableView.dequeueReusableCell(withIdentifier: "contactListCell", for: indexPath)
+        let contact = isSearchActive ? filteredContacts[indexPath.row] : contactList[indexPath.row]
         
-        cell.textLabel?.text = String("\(contactList[indexPath.row].name)" + "(\(contactList[indexPath.row].age))")
-        cell.detailTextLabel?.text = contactList[indexPath.row].phoneNumber
+        cell.textLabel?.text = "\(contact.name) (\(contact.age))"
+        cell.detailTextLabel?.text = contact.phoneNumber
         
         return cell
     }
@@ -125,6 +142,7 @@ extension ContactListViewController: UITableViewDataSource {
     }
 }
 
+
 //MARK: - UITableViewDelegate Extension
 extension ContactListViewController: UITableViewDelegate {
     
@@ -134,3 +152,17 @@ extension ContactListViewController: UITableViewDelegate {
 }
 
 
+// MARK: - searchBar Extension
+extension ContactListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+            filteredContacts = contactList
+            contactTableView.reloadData()
+            return
+        }
+        filteredContacts = contactList.filter { contact in
+            return contact.name.lowercased().contains(searchText.lowercased())
+        }
+        contactTableView.reloadData()
+    }
+}
