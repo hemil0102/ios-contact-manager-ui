@@ -11,14 +11,16 @@ final class ContactListViewController: UIViewController {
     
     //MARK: - Properties
     private var contactList: [Contact] = []
-    var filteredContacts: [Contact] = []
-    var searchController = UISearchController(searchResultsController: nil)
-    var isSearchActive: Bool {
+    private var filteredContacts: [Contact] = []
+    private var searchController = UISearchController(searchResultsController: nil)
+    private var isSearchActive: Bool {
         return searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
     }
+    
     private var numberOfLastRow: Int {
         contactTableView.numberOfRows(inSection: 0)
     }
+    
     
     //MARK: - @IBOutlet
     @IBOutlet private weak var contactTableView: UITableView!
@@ -30,6 +32,7 @@ final class ContactListViewController: UIViewController {
         configureTableView()
         configureNavigationItem()
         configureSearchBar()
+        navigationItem.title = "연락처"
     }
     
     //MARK: - Custom Methods
@@ -38,11 +41,13 @@ final class ContactListViewController: UIViewController {
     }
     
     func configureSearchBar() {
+              searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        definesPresentationContext = true
         searchController.searchBar.placeholder = "연락처 검색"
         navigationItem.searchController = searchController
+        searchController.searchBar.showsCancelButton = false
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     @objc private func addContactButtonTapped(_ sender: UIButton) {
@@ -153,9 +158,11 @@ extension ContactListViewController: UITableViewDelegate {
 
 // MARK: - searchBar Extension
 extension ContactListViewController: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, searchText.isEmpty == false else {
             filteredContacts = contactList
+            
             contactTableView.reloadData()
             return
         }
@@ -164,9 +171,24 @@ extension ContactListViewController: UISearchResultsUpdating {
             let nameMatches = contact.name.lowercased().contains(searchTextLowercased)
             let ageMatches = String(contact.age).contains(searchText)
             let phoneNumberMatches = contact.phoneNumber.extractNumbersFromStrings().contains(searchText)
-
             return nameMatches || ageMatches || phoneNumberMatches
         }
         contactTableView.reloadData()
     }
 }
+
+extension ContactListViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        let searchBar = searchController.searchBar
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let searchBar = searchController.searchBar
+        searchBar.showsCancelButton = false
+    }
+}
+
+

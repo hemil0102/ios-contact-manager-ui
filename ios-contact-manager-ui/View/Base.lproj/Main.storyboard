@@ -131,6 +131,14 @@
                                     <constraint firstItem="eEa-GO-CjQ" firstAttribute="height" secondItem="6GV-nb-TkY" secondAttribute="height" id="a2B-KK-vkZ"/>
                                 </constraints>
                             </stackView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zcT-V5-J4X">
+                                <rect key="frame" x="-20" y="405" width="430" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kpc-Hk-lad" id="SIy-hs-Dx5"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WIh-7L-I15"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
