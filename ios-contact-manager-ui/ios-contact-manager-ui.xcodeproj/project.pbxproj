@@ -13,6 +13,7 @@
 		709F65D72B45549F00EC7105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709F65D52B45549F00EC7105 /* Main.storyboard */; };
 		709F65D92B4554A100EC7105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709F65D82B4554A100EC7105 /* Assets.xcassets */; };
 		709F65DC2B4554A100EC7105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709F65DA2B4554A100EC7105 /* LaunchScreen.storyboard */; };
+		70C7AB732B58E0CA00CDBEAD /* ContactListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7AB722B58E0CA00CDBEAD /* ContactListTableViewCell.swift */; };
 		70D0B73B2B4B98AE00998F25 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D0B73A2B4B98AE00998F25 /* UIViewController + Extension.swift */; };
 		C71032E72B4E88110072DA53 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71032E62B4E88110072DA53 /* AddContactViewController.swift */; };
 		C777E6002B55389B00345138 /* PhoneNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C777E5FF2B55389B00345138 /* PhoneNumberFormatter.swift */; };
@@ -32,6 +33,7 @@
 		709F65D82B4554A100EC7105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		709F65DB2B4554A100EC7105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		709F65DD2B4554A100EC7105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70C7AB722B58E0CA00CDBEAD /* ContactListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTableViewCell.swift; sourceTree = "<group>"; };
 		70D0B73A2B4B98AE00998F25 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		C71032E62B4E88110072DA53 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		C777E5FF2B55389B00345138 /* PhoneNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberFormatter.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			children = (
 				C71032E62B4E88110072DA53 /* AddContactViewController.swift */,
 				709F65D32B45549F00EC7105 /* ContactListViewController.swift */,
+				70C7AB722B58E0CA00CDBEAD /* ContactListTableViewCell.swift */,
 				C7F8C5F02B47EEF7001FCF05 /* mockJson.json */,
 				709F65CF2B45549F00EC7105 /* AppDelegate.swift */,
 				709F65D12B45549F00EC7105 /* SceneDelegate.swift */,
@@ -210,6 +213,7 @@
 				C777E6002B55389B00345138 /* PhoneNumberFormatter.swift in Sources */,
 				C779964E2B4D24FC00196BE3 /* JsonDecoder.swift in Sources */,
 				709F65D02B45549F00EC7105 /* AppDelegate.swift in Sources */,
+				70C7AB732B58E0CA00CDBEAD /* ContactListTableViewCell.swift in Sources */,
 				709F65D22B45549F00EC7105 /* SceneDelegate.swift in Sources */,
 				C7A34A962B46A27200314592 /* Contact.swift in Sources */,
 				C7F2E0082B54CA8F00EAEBA2 /* TextFieldError.swift in Sources */,
