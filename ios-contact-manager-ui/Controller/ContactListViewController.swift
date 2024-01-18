@@ -129,7 +129,6 @@ extension ContactListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = contactTableView.dequeueReusableCell(withIdentifier: "contactListCell", for: indexPath)
         let contact = isSearchActive ? filteredContacts[indexPath.row] : contactList[indexPath.row]
-        
         cell.textLabel?.text = "\(contact.name) (\(contact.age))"
         cell.detailTextLabel?.text = contact.phoneNumber
         
@@ -155,13 +154,18 @@ extension ContactListViewController: UITableViewDelegate {
 // MARK: - searchBar Extension
 extension ContactListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+        guard let searchText = searchController.searchBar.text, searchText.isEmpty == false else {
             filteredContacts = contactList
             contactTableView.reloadData()
             return
         }
         filteredContacts = contactList.filter { contact in
-            return contact.name.lowercased().contains(searchText.lowercased())
+            let searchTextLowercased = searchText.lowercased()
+            let nameMatches = contact.name.lowercased().contains(searchTextLowercased)
+            let ageMatches = String(contact.age).contains(searchText)
+            let phoneNumberMatches = contact.phoneNumber.extractNumbersFromStrings().contains(searchText)
+
+            return nameMatches || ageMatches || phoneNumberMatches
         }
         contactTableView.reloadData()
     }
