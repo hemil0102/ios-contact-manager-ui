@@ -41,7 +41,7 @@ final class ContactListViewController: UIViewController {
     }
     
     func configureSearchBar() {
-              searchController.searchBar.delegate = self
+        searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "연락처 검색"
@@ -68,6 +68,7 @@ final class ContactListViewController: UIViewController {
     
     private func addData(with data: Contact) {
         contactList.append(data)
+        filteredContacts.append(data)
         self.contactTableView.insertRows(at: [IndexPath(row: numberOfLastRow, section: 0)], with: .automatic)
     }
     
@@ -162,14 +163,13 @@ extension ContactListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, searchText.isEmpty == false else {
             filteredContacts = contactList
-            
             contactTableView.reloadData()
             return
         }
         filteredContacts = contactList.filter { contact in
             let searchTextLowercased = searchText.lowercased()
             let nameMatches = contact.name.lowercased().contains(searchTextLowercased)
-            let ageMatches = String(contact.age).contains(searchText)
+            let ageMatches = contact.age.contains(searchText)
             let phoneNumberMatches = contact.phoneNumber.extractNumbersFromStrings().contains(searchText)
             return nameMatches || ageMatches || phoneNumberMatches
         }
