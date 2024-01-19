@@ -7,11 +7,12 @@
 > 프로젝트 기간: 2023.01.02 ~ 2023.01.19
 
 ## 팀원 소개
-| <img src="https://github.com/tasty-code/ios-rock-scissor-paper/assets/63277563/129dca38-b8b6-401e-893d-5a6ba5e0f927.png" width="200"> | <img src="https://github.com/jane1choi/ios-juice-maker/assets/63277563/7fbc1d13-79fa-41ab-9bd4-452da98b0094.png" width="200"> |
+| <img src="https://github.com/hemil0102/ios-contact-manager-ui/assets/149054154/a88ee4a3-2981-4b60-bb6d-47138f6a0dc9" width="200"> | <img src="https://github.com/hemil0102/ios-contact-manager-ui/assets/149054154/79ae1c75-a3c5-4390-b4df-eca752a7bf80" width="200"> |
 |:----------:|:---------:|
 | **Hoi** | **Harry** |
 | [@happykwon](https://github.com/happykwon) |  [@hemil0102](https://github.com/hemil0102)) | 
 <br>
+
 
 ## 구현 요구 사항
 ### Step 1-1 모델타입 구현
